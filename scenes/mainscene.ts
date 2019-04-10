@@ -165,8 +165,10 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
 
         this.width = w;
         this.height = h;
-
-        this.sys.game.resize(w, h);
+        //this.scale;
+        //  this.scale;
+        // this.controller.Game.ScaleManager;
+        //this.controller.scale.setGameSize(w,h);//.scale.resize(w,h);//this.sys.scale.resize(w,h);
 
         let marginTop = h / 16;
         let marginBottom = 0;
