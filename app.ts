@@ -35,7 +35,7 @@ export default class App extends Phaser.Game implements EventListener {
             height: 540,
             scene: <Phaser.Scene[]>scenes,
             scale: {
-                mode: Phaser.Scale.ScaleModes.NONE
+                mode: Phaser.Scale.ScaleModes.FIT
             },
             render: {
                 antialias: true,
@@ -69,7 +69,7 @@ export default class App extends Phaser.Game implements EventListener {
         let fullscreenButton = document.getElementById('fullscreen');
         if (fullscreenButton != null) {
             fullscreenButton.addEventListener('click', () => {
-                this.canvas[this.device.fullscreen.request]();
+                    this.scale.toggleFullscreen();
             });
         }
 
@@ -114,7 +114,7 @@ export default class App extends Phaser.Game implements EventListener {
 
     public handleEvent(eventType: EventType, data: any) {
         switch(eventType) {
-            case EventType.FullScreen: this.canvas[this.device.fullscreen.request](); break;
+            case EventType.FullScreen:  this.scale.toggleFullscreen(); break;
             case EventType.Quit:
                 setTimeout(this.restartCallback, 1);
                 App.controller.disconnect();

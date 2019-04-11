@@ -38,7 +38,7 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
                 this.resize();
                 break;
             case Types.EventType.Resized:
-                this.controller.DiceManager.setScale(data.scaleMultiplier / 30);
+                this.controller.DiceManager.setScale(data.scale / 30);
                 break;
             case Types.EventType.ToggleDugouts:
                 this.worldLayer.toggleDugouts(this.cameras.main);
@@ -108,7 +108,7 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
         this.uiCamera = uiCamera;
 
         window.onresize = () => {
-            this.controller.triggerEvent(Types.EventType.Resizing);
+            // this.controller.triggerEvent(Types.EventType.Resizing);
         };
 
         this.redraw(this.controller.getGameState());
@@ -165,7 +165,6 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
 
         this.width = w;
         this.height = h;
-        this.scale.resize(w,h);
 
         let marginTop = h / 16;
         let marginBottom = 0;
@@ -176,6 +175,7 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
         h -= marginTop + marginBottom;
 
         this.worldLayer.resize(w, h);
+        this.scale.resize(w,h);
 
         this.controller.triggerEvent(Types.EventType.ModelChanged);
 
