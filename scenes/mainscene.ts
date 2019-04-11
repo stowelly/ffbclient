@@ -108,7 +108,7 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
         this.uiCamera = uiCamera;
 
         window.onresize = () => {
-            // this.controller.triggerEvent(Types.EventType.Resizing);
+             this.controller.triggerEvent(Types.EventType.Resizing);
         };
 
         this.redraw(this.controller.getGameState());
