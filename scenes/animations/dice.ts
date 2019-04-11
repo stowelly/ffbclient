@@ -63,7 +63,7 @@ export class Dice {
         
         let targetCoordinate = t[Math.floor(Math.random()*t.length)];
 
-        let config: AnimationConfig = {
+        let config: Phaser.Animations.Types.Animation = {
             key: key,
             frames: this.generateRollFrames(spritesheet, targetCoordinate, 60),
             repeat: 0,
@@ -79,13 +79,14 @@ export class Dice {
         return key;
     }
 
-    private generateRollFrames(key: string, targetCoordinate: number[], numFrames: number): AnimationFrameConfig[] {
+    private generateRollFrames(key: string, targetCoordinate: number[], numFrames: number): Phaser.Animations.Types.AnimationFrame[] {
+
         let offsetX = targetCoordinate[0];
         let offsetY = targetCoordinate[1];
 
         // Generate decelerating path from random point to [0,0]
 
-        let result:AnimationFrameConfig[] = [];
+        let result:Phaser.Animations.Types.AnimationFrame[] = [];
 
         let startX = 0.25 + Math.random() * 0.75;
         let startY = 0.25 + Math.random() * 0.75;
@@ -105,10 +106,12 @@ export class Dice {
             let spriteY = (Math.ceil(force)*this.height + Math.round(cY * this.height * force) + offsetY) % this.height;
 
             currentFrame = spriteX + spriteY*this.width;
-            result.push({
+
+            let animationFrame:Phaser.Animations.Types.AnimationFrame ={
                 key: key,
                 frame: currentFrame
-            });
+            };
+            result.push(animationFrame);
         }
 
         return result;
