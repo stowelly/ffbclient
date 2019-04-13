@@ -28,6 +28,7 @@
     "phaser": "^3.16.2",
     "ts-loader": "^4.4.1",
     "typescript": "^2.9.2",
+    "js-logger": "^1.6.0",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.5",

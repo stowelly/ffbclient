@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import * as Core from ".";
 import * as Types from "../types";
 import { Dice } from "../scenes/animations/dice";
+import Logger from "js-logger";
 
 export type DieType = "d6" | "db" | "d8" | "d68";
 
@@ -183,7 +184,7 @@ export class DiceManager {
                 pY = y + localSpread[1][1] * spreadScale * this.scale;
                 this.generateRoll("d8", sprite, size, targets[1], pX, pY, duration, angle + angleStep, delay, locationKey);
             } else {
-                console.log("Strange d68 roll encountered", targets);
+                Logger.warn("Strange d68 roll encountered", targets);
             }
         } else {
             for (let i = 0; i<numDice; i++) {
@@ -203,7 +204,7 @@ export class DiceManager {
 
         this.activeRolls[rollKey] = rollData;
 
-        console.log("Adding roll", rollKey, locationKey);
+        Logger.debug("Adding roll", rollKey, locationKey);
 
         if (type != "db" && dice.length > 0) {
             dice[0].sprite.addListener('animationcomplete', () => {
@@ -301,7 +302,7 @@ export class DiceManager {
     }
 
     public executeFadeRoll(rollKey: string, delay: number = 0) {
-        console.log("Removing roll", rollKey);
+        Logger.debug("Removing roll", rollKey);
         let roll: RollType = this.activeRolls[rollKey];
         if (roll != undefined) {
             this.scene.tweens.add({

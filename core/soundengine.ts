@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import Logger from "js-logger";
 import * as Core from ".";
 
 export class SoundEngine {
@@ -64,7 +65,7 @@ export class SoundEngine {
     }
 
     public play(sound: string) {
-        console.log("Playing Sound", sound);
+        Logger.debug("Playing Sound", sound);
         this.scene.sound.play(sound);
     }
 

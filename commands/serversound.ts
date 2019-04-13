@@ -1,5 +1,6 @@
 import { Command } from ".";
 import * as Core from "../core";
+import Logger from "js-logger";
 
 export class CommandServerSound extends Command {
     public constructor(controller: Core.Controller) {
@@ -7,7 +8,7 @@ export class CommandServerSound extends Command {
     }
 
     public processCommand(data: FFB.Protocol.Messages.ServerSound) {
-        console.log("Processing server sound command", data);
+        Logger.debug("Processing server sound command", data);
         
         this.controller.SoundEngine.play(data.sound);
     }

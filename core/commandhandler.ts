@@ -1,5 +1,6 @@
 import * as Commands from "../commands";
 import * as Core from ".";
+import Logger from "js-logger";
 
 export class CommandHandler {
     private commandHandlers: {[id:string]:Commands.Command};
@@ -25,7 +26,7 @@ export class CommandHandler {
         if (handler) {
             handler.processCommand(data);
         } else {
-            console.log("Unknown command", commandId, data);
+            Logger.warn("Unknown command", commandId, data);
         }
     }
 }

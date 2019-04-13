@@ -4,6 +4,7 @@ import * as Comp from "../components";
 import * as Types from "../../types";
 import * as Model from "../../model";
 import * as Layers from ".";
+import Logger from "js-logger";
 
 export enum CameraView {
     Field,
@@ -62,7 +63,7 @@ export class World {
         this.layers.map(l => l.create());
 
         this.container.add(this.layers.map(l => l.getView()));
-        console.log("Created", this.playerLayer);
+        Logger.debug("Created", this.playerLayer);
     }
 
     public resize(width: number, height: number) {

@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import Logger from "js-logger";
 import * as Core from "./core";
 import * as Scenes from "./scenes";
 import CommandManager from "./model/commandmanager";
@@ -11,9 +12,9 @@ export default class App extends Phaser.Game implements EventListener {
     private restartCallback: () => void;
 
     public constructor(restartCallback: () => void) {
-        console.log("Starting Phaser App");
-
-
+        Logger.info("Starting Phaser App");
+        Logger.useDefaults();
+        Logger.setLevel(Logger.DEBUG);
         let game = new Model.Game();
         let commandManager = new CommandManager(game);
         let soundEngine = new Core.SoundEngine();
@@ -35,7 +36,7 @@ export default class App extends Phaser.Game implements EventListener {
             height: 540,
             scene: <Phaser.Scene[]>scenes,
             scale: {
-                mode: Phaser.Scale.ScaleModes.FIT
+                mode: Phaser.Scale.ScaleModes.WIDTH_CONTROLS_HEIGHT
             },
             render: {
                 antialias: true,

@@ -1,4 +1,5 @@
 //import * as WebSocket from "ws";
+import Logger from "js-logger";
 import LZString from "lz-string";
 
 export class Network {
@@ -6,7 +7,7 @@ export class Network {
     private config: any;
 
     public constructor() {
-        console.log("Initializing Network");
+        Logger.info("Initializing Network");
 
     }
 
@@ -18,12 +19,12 @@ export class Network {
         let proto = window.location.protocol == 'https:' ? 'wss:' : 'ws:';
         let port = proto == 'wss:' ? 22224 : 22223;
 
-        console.log("Connecting to "+proto+"//"+host+":"+port);
+        Logger.debug("Connecting to "+proto+"//"+host+":"+port);
 
         let ws: WebSocket = new WebSocket(proto+"//"+host+":"+port+"/command");
 
         ws.onopen = (evt) => {
-            console.log('Open');
+            Logger.debug('Open');
             this.join();
         };
 
@@ -34,7 +35,7 @@ export class Network {
         };
 
         ws.onclose = (evt) => {
-            console.log('Close');
+            Logger.debug('Close');
         };
 
         this.ws = ws;
@@ -79,7 +80,7 @@ export class Network {
     private send(data: any) {
         let msg = JSON.stringify(data);
         let compressed = LZString.compressToUTF16(msg);
-        console.log('Sending', msg);
+        Logger.debug('Sending', msg);
         this.ws.send(compressed);
     }
 }

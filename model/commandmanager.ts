@@ -2,6 +2,7 @@ import * as Model from ".";
 import * as Core from "../core";
 import { AbstractCommand } from "./clientcommands";
 import { EventType } from "../types/eventlistener";
+import Logger from "js-logger";
 
 export default class CommandManager {
     private game: Model.Game;
@@ -27,7 +28,7 @@ export default class CommandManager {
 
     public setController(controller: Core.Controller) {
         this.controller = controller;
-        console.log("Command Manager setting controller", this.controller);
+        Logger.info("Command Manager setting controller", this.controller);
     }
 
     private applyCommand(command: AbstractCommand, fast: boolean) {
@@ -58,7 +59,7 @@ export default class CommandManager {
         if (this.pauseResolution == null) {
             this.executionQueue = this.executionQueue
             .then(() => {
-                console.log("CommandManager paused");
+                Logger.debug("CommandManager paused");
                 return new Promise((resolve, reject) => {
                     this.pauseResolution = resolve;
                 });
@@ -70,7 +71,7 @@ export default class CommandManager {
         if (this.pauseResolution != null) {
             this.pauseResolution();
             this.pauseResolution = null;
-            console.log("CommandManager resumed");
+            Logger.debug("CommandManager resumed");
         }
     }
 

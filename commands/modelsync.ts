@@ -3,6 +3,7 @@ import * as Core from "../core";
 import { Command } from ".";
 import * as ClientCommands from "../model/clientcommands";
 import * as Model from "../model";
+import Logger from "js-logger";
 
 export class CommandModelSync extends Command {
     private handlers: { [id: string] : (ModelChange) => ClientCommands.AbstractCommand };
@@ -40,7 +41,7 @@ export class CommandModelSync extends Command {
     }
 
     public processCommand(data: FFB.Protocol.Messages.ServerModelSync) {
-        console.log("Processing model sync command", data);
+        Logger.debug("Processing model sync command", data);
 
         let compoundCommand = new ClientCommands.CompoundCommand();
         compoundCommand.setSound(data.sound);
@@ -51,7 +52,7 @@ export class CommandModelSync extends Command {
                 let command: ClientCommands.AbstractCommand = this.reportHandlers[reportId].call(this, report);
                 compoundCommand.addCommand(command);
             } else {
-                console.log("Unhandled report", reportId);
+                Logger.warn("Unhandled report", reportId);
             }
         }
 
@@ -61,7 +62,7 @@ export class CommandModelSync extends Command {
                 let command: ClientCommands.AbstractCommand = this.handlers[changeId].call(this, change);
                 compoundCommand.addCommand(command);
             } else {
-                console.log("Unhandled model change", changeId);
+                Logger.warn("Unhandled model change", changeId);
             }
         }
         this.controller.enqueueCommand(compoundCommand);

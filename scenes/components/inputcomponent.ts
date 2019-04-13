@@ -1,4 +1,5 @@
 import * as Comp from ".";
+import Logger from "js-logger";
 
 export class Input extends Comp.UIComponent {
     private container: Phaser.GameObjects.Container;
@@ -76,7 +77,7 @@ export class Input extends Comp.UIComponent {
 
         //this.ctx.scene.input.keyboard.addListener("keydown", (event) => {
         window.onkeydown = (event) => {
-            console.log(event);
+            Logger.debug(event);
             if (this.config.visible) {
                 this.onKeydown(event);
                 event.preventDefault();

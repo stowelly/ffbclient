@@ -17,7 +17,8 @@
         "outDir": "./build",
         "baseUrl": "",
         "paths": {
-            "phaser": [ "node_modules/phaser/dist/phaser"]
+            "phaser": [ "node_modules/phaser/dist/phaser"],
+            "js-logger": [ "node_modules/js-logger"]
         }
     }
 }

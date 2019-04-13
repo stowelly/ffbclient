@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import * as Core from "../core";
 import { AbstractScene } from "./abstractscene";
+import Logger from "js-logger";
 
 export class BootScene extends AbstractScene {
 
@@ -21,7 +22,7 @@ export class BootScene extends AbstractScene {
 
     public constructor(controller: Core.Controller) {
         super("bootScene", controller);
-        console.log("Boot Scene: constructed");
+        Logger.info("Boot Scene: constructed");
 
         this.texts = [
             "Always Hungry",
@@ -48,9 +49,9 @@ export class BootScene extends AbstractScene {
     }
 
     public init(config) {
-        console.log('Boot Scene: init', config);
+        Logger.info('Boot Scene: init', config);
 
-        console.log(this);
+        Logger.debug(this);
 
         this.phase = 1;
         this.assets = this.controller.getGameState().getAssets();
@@ -61,7 +62,7 @@ export class BootScene extends AbstractScene {
     }
 
     public preload() {
-        console.log('Boot Scene: preload', this.assets);
+        Logger.debug('Boot Scene: preload', this.assets);
 
         this.bg = this.addBg();
 
@@ -239,7 +240,7 @@ export class BootScene extends AbstractScene {
     }
 
     public create(config) {
-        console.log('Boot Scene: create', config);
+        Logger.info('Boot Scene: create', config);
     }
 
     public update() {

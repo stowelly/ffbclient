@@ -1,5 +1,6 @@
 import * as Model from ".";
 import { Coordinate } from "../types";
+import Logger from "js-logger";
 
 export class Game {
     private isInitialized: boolean;
@@ -183,7 +184,7 @@ export class Game {
     }
 
     private applyTeamTurnData(team: Model.Team, data: FFB.Protocol.Messages.TurnData) {
-        console.log("Applying Team Turn Data", data);
+        Logger.debug("Applying Team Turn Data", data);
         team.setTurn(data.turnNr);
     }
 
@@ -404,7 +405,7 @@ export class Game {
             return new Coordinate(x-(width-1), y-(height-1));
         }
 
-        console.log("Oops, this shouldn't happpen.");
+        Logger.warn("findEmptyPatchNearLocation: Oops, this shouldn't happpen.");
 
         return null;
     }

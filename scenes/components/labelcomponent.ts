@@ -2,6 +2,7 @@ import * as Comp from ".";
 import {Size} from ".";
 import {EventType} from "../../types";
 import * as Core from "../../core";
+import Logger from "js-logger";
 
 export class Label extends Comp.UIComponent {
     private text: string;
@@ -46,7 +47,7 @@ export class Label extends Comp.UIComponent {
                     controller.triggerEvent(event);
                 });
             } else {
-               console.error(`Label ${this.config.id} has event ${event} configured but no controller is set.`)
+               Logger.error(`Label ${this.config.id} has event ${event} configured but no controller is set.`)
             }
         }
 

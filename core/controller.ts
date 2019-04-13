@@ -4,6 +4,7 @@ import * as Types from "../types";
 import * as ClientCommands from "../model/clientcommands";
 import CommandManager from "../model/commandmanager";
 import * as Scenes from "../scenes";
+import Logger from "js-logger";
 
 export class Controller {
     private currentScene: string;
@@ -44,7 +45,7 @@ export class Controller {
                 this.commandManager.resume();
                 break;
             case Types.EventType.Resized:
-                console.log(data);
+                Logger.debug(data);
                 this.scale = data.scale;
                 break;
         }
@@ -63,7 +64,7 @@ export class Controller {
     }
 
     public registerScene(scene: Scenes.AbstractScene) {
-        console.log("Registering scene", scene.sys.settings.key);
+        Logger.info("Registering scene", scene.sys.settings.key);
         this.scenes[scene.sys.settings.key] = scene;
     }
 
@@ -80,7 +81,7 @@ export class Controller {
     }
 
     public setScene(scene: string, data: any = undefined) {
-        console.log("Setting Scene: " + scene, data);
+        Logger.debug("Setting Scene: " + scene, data);
 
         if (this.currentScene) {
             this.sceneManager.stop(this.currentScene);
@@ -95,7 +96,7 @@ export class Controller {
     public enqueueCommand(command: ClientCommands.AbstractCommand) {
         this.commandManager.enqueueCommand(command);
 
-        console.log('Command enqueued', command);
+        Logger.debug('Command enqueued', command);
 
         if (command.triggerModelChanged == true) {
             this.triggerEvent(Types.EventType.ModelChanged);

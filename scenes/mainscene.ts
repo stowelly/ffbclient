@@ -5,6 +5,7 @@ import * as Types from "../types";
 import * as Layers from "./layers";
 import * as Scenes from "../scenes";
 import * as Comp from "./components";
+import Logger from "js-logger";
 import Point = Phaser.Geom.Point;
 
 export class MainScene extends Scenes.AbstractScene implements Types.EventListener {
@@ -23,7 +24,7 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
 
     public constructor(controller: Core.Controller) {
         super('mainScene', controller);
-        console.log("Main Scene: constructed");
+        Logger.info("Main Scene: constructed");
         this.currentCamera = Layers.CameraView.Field;
 
         controller.addEventListener(this);
@@ -70,7 +71,7 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
     }
 
     public init(config) {
-        console.log('Main Scene: init', config);
+        Logger.debug('Main Scene: init', config);
 
         this.scaleMultiplier = 1.0;
 
@@ -79,11 +80,11 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
     }
 
     public preload() {
-        console.log('Main Scene: preload');
+        Logger.debug('Main Scene: preload');
     }
 
     public create(config) {
-        console.log('Main Scene: create', config);
+        Logger.debug('Main Scene: create', config);
 
         let game = this.controller.getGameState();
 

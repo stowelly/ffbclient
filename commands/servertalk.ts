@@ -1,5 +1,6 @@
 import { Command } from ".";
 import * as Core from "../core";
+import Logger from "js-logger";
 
 export class CommandServerTalk extends Command {
     public constructor(controller: Core.Controller) {
@@ -7,6 +8,6 @@ export class CommandServerTalk extends Command {
     }
 
     public processCommand(data: FFB.Protocol.Messages.ServerTalk) {
-        console.log("Processing server talk command", data);
+        Logger.warn("Processing server talk command", data);
     }
 }
