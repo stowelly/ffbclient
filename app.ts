@@ -14,7 +14,7 @@ export default class App extends Phaser.Game implements EventListener {
     public constructor(restartCallback: () => void) {
         Logger.info("Starting Phaser App");
         Logger.useDefaults();
-        Logger.setLevel(Logger.DEBUG);
+        Logger.setLevel(Logger.ERROR);
         let game = new Model.Game();
         let commandManager = new CommandManager(game);
         let soundEngine = new Core.SoundEngine();

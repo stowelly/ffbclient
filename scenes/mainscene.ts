@@ -75,8 +75,8 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
 
         this.scaleMultiplier = 1.0;
 
-        this.width = this.sys.canvas.width;
-        this.height = this.sys.canvas.height;
+        this.width = this.scale.width;
+        this.height = this.scale.height;
     }
 
     public preload() {
@@ -107,6 +107,10 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
         uiCamera.setZoom(1);
         uiCamera.setScroll(FAR_AWAY, FAR_AWAY);
         this.uiCamera = uiCamera;
+
+        this.scale.on('resize', function(gameSize, baseSize, displaySize, resolution){
+                Logger.error("SCENEMANAGERRESIZING");
+        });
 
         window.onresize = () => {
              this.controller.triggerEvent(Types.EventType.Resizing);
@@ -158,11 +162,9 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
     }
 
     public resize() {
-        this.sys.canvas.style.width = "100%";
-        this.sys.canvas.style.height = "100%";
 
-        let w = this.sys.canvas.clientWidth;
-        let h = this.sys.canvas.clientHeight;
+        let w = this.scale.width;
+        let h = this.scale.height;
 
         this.width = w;
         this.height = h;
@@ -176,7 +178,6 @@ export class MainScene extends Scenes.AbstractScene implements Types.EventListen
         h -= marginTop + marginBottom;
 
         this.worldLayer.resize(w, h);
-        this.scale.resize(w,h);
 
         this.controller.triggerEvent(Types.EventType.ModelChanged);
 
