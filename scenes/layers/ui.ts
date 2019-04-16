@@ -198,8 +198,8 @@ export class UI implements Types.EventListener {
         this.renderContext = {
             scene: this.scene,
             parent: null,
-            w: this.scene.sys.canvas.clientWidth,
-            h: this.scene.sys.canvas.clientHeight,
+            w: this.scene.scale.width,
+            h: this.scene.scale.height,
             scale: 30,
             x: 0,
             y: 0,

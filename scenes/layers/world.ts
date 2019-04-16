@@ -78,8 +78,8 @@ export class World {
         this.gridSize = zoomFactor * (pitchWidth-2)/26;
 
         this.controller.triggerEvent(Types.EventType.Resized, {
-            w: this.scene.sys.canvas.clientWidth,
-            h: this.scene.sys.canvas.clientHeight,
+            w: this.scene.scale.width,
+            h: this.scene.scale.height,
             scale: this.gridSize
         });
 

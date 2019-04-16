@@ -57,8 +57,8 @@ export class BootScene extends AbstractScene {
         this.assets = this.controller.getGameState().getAssets();
         this.spritesheets = {};
 
-        this.width = this.sys.canvas.width;
-        this.height = this.sys.canvas.height;
+        this.width = this.scale.width;
+        this.height = this.scale.height;
     }
 
     public preload() {
